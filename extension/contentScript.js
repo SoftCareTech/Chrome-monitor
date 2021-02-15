@@ -74,7 +74,7 @@ function startSubmit() {
 
 function submit(values) {
 	console.log(values);
-	fetch('http://localhost:3000/test', {
+	fetch('http://localhost:4000/test', {
 		method: 'post',
 		headers: { 'Content-Type': 'application/json' }, // json format sending
 		body: values,
