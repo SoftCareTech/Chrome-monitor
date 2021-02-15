@@ -1,4 +1,10 @@
-set up server using:
-node js, express, mongodb
+# Chrome Extension
 
-setup extension by loading the package under extension tab in chrome after enabling developer mode.
+This is an application that captures and monitor user's behaviour as they browser the internet with the aid of the internet-browsers.
+
+## Tools
+
+    - node.js => v14.15.5
+    - npm => 6.14.11
+    - mongodb
+    - JavaScript
