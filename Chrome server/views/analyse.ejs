@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        html,
+        body {
+            min-height: 100%;
+        }
+        
+        table {
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #c2c2a3;
+        }
+        
+        table>thead {
+            background: #7a755f;
+            color: white;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title> Sit Analystical data </title>
+</head>
+
+<body>
+    <h1>Sit and user behavoiors </h1>
+    <table>
+        <thead>
+            <td>Host</td>
+            <td>Page</td>
+            <td>Duration</td>
+            <td>Clicked</td>
+            <td>Key Pressed</td>
+            <td>Scroll</td>
+        </thead>
+        <% for(var i = 0; i < obj.length; i++) {%>
+            <tr>
+                <td>
+                    <%= obj[i].host %><a href="analyse/<%= obj[i].host %>"> visit</a>
+                </td>
+                <td>
+                    <%= obj[i].page %> <a href="analyse/<%= obj[i].page %>"> visit</a>
+                </td>
+                <td>
+                    <%= obj[i].duration %>
+                </td>
+                <td>
+                    <%= obj[i].clicked %>
+                </td>
+                <td>
+                    <%= obj[i].keyPressed %>
+                </td>
+                <td>
+                    <%= obj[i].scroll %>
+                </td>
+
+
+            </tr>
+            <% } %>
+
+    </table>
+</body>
+
+</html>
