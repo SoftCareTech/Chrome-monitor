@@ -1,12 +1,16 @@
  const express = require('express');
  const bodyParser = require('body-parser')
- const app = express();
+ const app = express()
+     //const app = require("https-localhost")()
  app.use(bodyParser.urlencoded({ extended: true }))
  const { MongoClient, ObjectId } = require('mongodb')
  app.set('view engine', 'ejs')
  app.use(bodyParser.json())
  app.listen(3000, function() { console.log('Listening on 3000') })
 
+ //const httpsLocalhost = require("https-localhost")()
+ //const certs = await httpsLocalhost.getCerts()
+ //const server = https.createServer(certs, app).listen(3000)
 
 
  var connectionString = "mongodb://localhost:27017";
@@ -22,7 +26,17 @@
      const collection = db.collection('site_rate')
 
      app.get('/view_analysis', (req, res) => {
-         collection.find().toArray()
+         collection.aggregate([{
+                 $group: {
+                     _id: { "host": "$host" },
+                     "keyPressed": { "$sum": "$keyPressed" },
+                     "scroll": { "$sum": "$scroll" },
+                     "duration": { "$sum": "$duration" },
+                     "clicked": { "$sum": "$clicked" },
+
+                     "host": { "$first": "$host" }
+                 }
+             }]).toArray()
              .then(results => {
                  res.render('index.ejs', { obj: results })
 
@@ -33,7 +47,7 @@
 
      app.get('/analyse/:url', (req, res) => { ///localhost:3000/view
          var url = req.params.url;
-         collection.find({ host: url }).toArray()
+         collection.find({ "host": url }).toArray()
              .then(results => {
                  res.render('analyse.ejs', { obj: results })
 
