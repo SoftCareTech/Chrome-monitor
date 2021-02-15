@@ -1,7 +1,7 @@
 {
     "name": "Events Observer",
     "version": "1.0",
-    "description": "Build an Extension for monitoring activities.... (i)To estimate the relevance of a website or web application to a user... (ii)To monitor the activities of the user on the web and store the action in a database.... (iii)To evaluate the testing tool with standard usability testing methods",
+    "description": "Build an Extension for monitoring activities.... ",
     "background": {
         "scripts": ["background.js"],
         "persistent": true
