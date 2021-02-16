@@ -84,13 +84,36 @@ function startSubmitDuration() {
     submit(v);
 }
 
-function submit(values) {
-    console.log(values);
-    fetch('http://localhost:4000/test', {
+function submit(data) {
+    console.log(data);
+    var strJSON = encodeURIComponent(data);
+    var url = 'http://localhost:4000/test/' + strJSON
+
+    $.ajax({
+        type: "POST",
+        url: url,
+
+        dataType: "json",
+        data: data,
+        success: function(data) {
+            if (data.success == true) {
+                console.log("Captured user activity saved.");
+            }
+        },
+
+        error: function(xhr, status, error) {
+            var errorMessage = xhr.status + ": " + xhr.statusText;
+            console.log(errorMessage);
+        },
+    });
+
+    /*
+    fetch(url, {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' }, // json format sending
-            body: values,
+            /// headers: { 'Content-Type': 'application/json' }, // json format sending
+            dataType: "json",
+            //data: data,
         })
         .then((result) => {})
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error)); */
 }
